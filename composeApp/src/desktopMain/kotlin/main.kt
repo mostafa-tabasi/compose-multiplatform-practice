@@ -1,3 +1,4 @@
+import androidx.compose.runtime.remember
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 
@@ -6,6 +7,8 @@ fun main() = application {
         onCloseRequest = ::exitApplication,
         title = "ComposeMultiplatformPractice",
     ) {
-        App()
+        App(
+            batteryManager = remember { BatteryManager() }
+        )
     }
 }
