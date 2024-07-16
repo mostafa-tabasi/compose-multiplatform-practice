@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <string name="platform">پلتفرم: %1$s</string>
+  <string name="current_battery_level">میزان باطری باقیمانده %1$d</string>
+</resources>
