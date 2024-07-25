@@ -15,6 +15,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -22,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -62,6 +64,7 @@ fun App(
                 composable("battery") { BatteryComposable(batteryManager) }
                 composable("di") { ScreenWithDIComposable() }
                 composable("network_call") { NetworkCallComposable(censorService) }
+                composable("counter") { CounterComposable() }
             }
         }
     }
@@ -90,6 +93,10 @@ private fun HomeComposable(navController: NavHostController) {
         Button(
             onClick = { navController.navigate("network_call") },
         ) { Text("Network Call") }
+
+        Button(
+            onClick = { navController.navigate("counter") },
+        ) { Text("Counter") }
     }
 }
 
@@ -166,5 +173,26 @@ fun NetworkCallComposable(censorService: InsultCensorService) {
         }
         censoredWord?.let { Text(it) }
         error?.let { Text(it.name, color = Color.Red) }
+    }
+}
+
+@Composable
+fun CounterComposable() {
+    var counter by remember { mutableIntStateOf(0) }
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
+    ) {
+        Text(
+            modifier = Modifier.testTag("counter_text"),
+            text = counter.toString(),
+        )
+        Button(
+            modifier = Modifier.testTag("counter_button"),
+            onClick = { counter++ },
+            content = { Text("Increase counter") },
+        )
     }
 }
