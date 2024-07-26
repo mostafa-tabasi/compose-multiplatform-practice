@@ -1,3 +1,5 @@
+package util
+
 /**
  * Returns the initials of a person's full name.
  *

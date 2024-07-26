@@ -1,5 +1,6 @@
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import util.getStringLength
 import kotlin.test.Test
 
 class GetStringLengthKtTest {

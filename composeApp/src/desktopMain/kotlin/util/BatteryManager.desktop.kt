@@ -1,3 +1,5 @@
+package util
+
 import oshi.SystemInfo
 import kotlin.math.roundToInt
 

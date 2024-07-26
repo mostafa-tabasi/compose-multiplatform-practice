@@ -1,5 +1,6 @@
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import util.getInitials
 import kotlin.test.Test
 
 class GetInitialsKtTest {

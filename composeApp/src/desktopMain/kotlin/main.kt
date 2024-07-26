@@ -14,7 +14,7 @@ fun main() {
             title = "ComposeMultiplatformPractice",
         ) {
             App(
-                batteryManager = remember { BatteryManager() },
+                batteryManager = remember { util.BatteryManager() },
                 censorService = remember { InsultCensorService(createHttpClient(OkHttp.create())) },
             )
         }

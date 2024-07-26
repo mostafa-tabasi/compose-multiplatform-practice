@@ -11,7 +11,7 @@ fun MainViewController() = ComposeUIViewController(
     }
 ) {
     App(
-        batteryManager = remember { BatteryManager() },
+        batteryManager = remember { util.BatteryManager() },
         censorService = remember { InsultCensorService(createHttpClient(Darwin.create())) },
     )
 }
