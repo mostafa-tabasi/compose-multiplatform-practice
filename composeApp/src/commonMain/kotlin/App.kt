@@ -10,7 +10,6 @@ import screen.BatteryScreen
 import screen.CounterScreen
 import screen.HomeScreen
 import screen.NetworkCallSampleScreen
-import screen.diWithViewModelSampleScreen.DISampleScreen
 import screen.username.UsernameScreen
 import util.BatteryManager
 
@@ -30,7 +29,6 @@ fun App(
             ) {
                 composable("home") { HomeScreen(navController) }
                 composable("battery") { BatteryScreen(batteryManager) }
-                composable("di") { DISampleScreen() }
                 composable("network_call") { NetworkCallSampleScreen(censorService) }
                 composable("counter") { CounterScreen() }
                 composable("username") { UsernameScreen() }

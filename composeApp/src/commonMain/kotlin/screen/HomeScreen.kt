@@ -37,10 +37,6 @@ fun HomeScreen(navController: NavHostController) {
         ) { Text("Battery Level") }
 
         Button(
-            onClick = { navController.navigate("di") },
-        ) { Text("Dependency Injection") }
-
-        Button(
             onClick = { navController.navigate("network_call") },
         ) { Text("Network Call") }
 
