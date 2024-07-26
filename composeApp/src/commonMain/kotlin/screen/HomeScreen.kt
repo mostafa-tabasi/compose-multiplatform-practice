@@ -47,5 +47,9 @@ fun HomeScreen(navController: NavHostController) {
         Button(
             onClick = { navController.navigate("counter") },
         ) { Text("Counter") }
+
+        Button(
+            onClick = { navController.navigate("username") },
+        ) { Text("Username") }
     }
 }

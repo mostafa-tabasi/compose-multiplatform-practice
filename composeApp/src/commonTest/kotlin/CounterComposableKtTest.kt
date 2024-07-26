@@ -5,6 +5,7 @@ import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.runComposeUiTest
+import screen.CounterScreen
 import kotlin.test.Test
 
 class CounterComposableKtTest {
@@ -12,7 +13,7 @@ class CounterComposableKtTest {
     @Test
     fun testCounterComposable() = runComposeUiTest {
         setContent {
-            CounterComposable()
+            CounterScreen()
         }
 
         onNodeWithTag("counter_text").assertExists()

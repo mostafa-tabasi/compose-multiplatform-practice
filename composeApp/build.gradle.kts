@@ -60,6 +60,8 @@ kotlin {
             implementation(libs.lifecycle.viewmodel)
             implementation(libs.navigation.compose)
             implementation(libs.bundles.ktor)
+            implementation(libs.datastore)
+            implementation(libs.datastore.preferences)
         }
 
         androidMain.dependencies {
