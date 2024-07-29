@@ -71,6 +71,7 @@ kotlin {
             implementation(libs.koin.androidx.compose)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.slf4j.android)
+            implementation(libs.core.splashscreen)
         }
 
         nativeMain.dependencies {
