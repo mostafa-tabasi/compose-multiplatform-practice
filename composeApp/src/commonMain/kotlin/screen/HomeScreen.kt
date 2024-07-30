@@ -47,5 +47,9 @@ fun HomeScreen(navController: NavHostController) {
         Button(
             onClick = { navController.navigate("username") },
         ) { Text("Username") }
+
+        Button(
+            onClick = { navController.navigate("pager") },
+        ) { Text("Pager") }
     }
 }

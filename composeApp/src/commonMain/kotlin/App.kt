@@ -15,6 +15,7 @@ import screen.BatteryScreen
 import screen.CounterScreen
 import screen.HomeScreen
 import screen.NetworkCallSampleScreen
+import screen.PagerScreen
 import screen.username.UsernameScreen
 import util.BatteryManager
 
@@ -42,6 +43,7 @@ fun App(
                 composable("network_call") { NetworkCallSampleScreen(censorService) }
                 composable("counter") { CounterScreen() }
                 composable("username") { UsernameScreen() }
+                composable("pager") { PagerScreen(platform = getPlatform()) }
             }
         }
     }
