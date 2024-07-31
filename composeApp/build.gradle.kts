@@ -72,6 +72,7 @@ kotlin {
             implementation(libs.ktor.client.okhttp)
             implementation(libs.slf4j.android)
             implementation(libs.core.splashscreen)
+            implementation(libs.androidx.compose.animation)
         }
 
         nativeMain.dependencies {

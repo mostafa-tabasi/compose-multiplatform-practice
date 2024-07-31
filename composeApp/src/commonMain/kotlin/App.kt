@@ -16,6 +16,7 @@ import screen.CounterScreen
 import screen.HomeScreen
 import screen.NetworkCallSampleScreen
 import screen.PagerScreen
+import screen.TransitionSharedElementScreen
 import screen.username.UsernameScreen
 import util.BatteryManager
 
@@ -38,12 +39,18 @@ fun App(
                 navController = navController,
                 startDestination = "home"
             ) {
-                composable("home") { HomeScreen(navController) }
+                composable("home") {
+                    HomeScreen(
+                        navController,
+                        platform = getPlatform(),
+                    )
+                }
                 composable("battery") { BatteryScreen(batteryManager) }
                 composable("network_call") { NetworkCallSampleScreen(censorService) }
                 composable("counter") { CounterScreen() }
                 composable("username") { UsernameScreen() }
                 composable("pager") { PagerScreen(platform = getPlatform()) }
+                composable("transition_shared_element") { TransitionSharedElementScreen() }
             }
         }
     }

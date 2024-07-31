@@ -1,5 +1,6 @@
 package screen
 
+import Platform
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,7 +22,10 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun HomeScreen(navController: NavHostController) {
+fun HomeScreen(
+    navController: NavHostController,
+    platform: Platform,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -51,5 +55,11 @@ fun HomeScreen(navController: NavHostController) {
         Button(
             onClick = { navController.navigate("pager") },
         ) { Text("Pager") }
+
+        if (platform.isAndroid) {
+            Button(
+                onClick = { navController.navigate("transition_shared_element") },
+            ) { Text("Transition Shared Element") }
+        }
     }
 }
