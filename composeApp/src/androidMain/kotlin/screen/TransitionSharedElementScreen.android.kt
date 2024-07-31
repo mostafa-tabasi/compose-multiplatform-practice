@@ -119,6 +119,9 @@ fun ListContent(
             with(sharedTransitionScope) {
                 Column(
                     modifier = Modifier
+                        .background(Color.White)
+                        .fillMaxWidth()
+                        .padding(8.dp)
                         .sharedBounds(
                             rememberSharedContentState(
                                 key = NatureSharedElementKey(
@@ -127,10 +130,8 @@ fun ListContent(
                                 )
                             ),
                             animatedVisibilityScope = animatedVisibilityScope,
+                            resizeMode = SharedTransitionScope.ResizeMode.RemeasureToBounds,
                         )
-                        .fillMaxWidth()
-                        .background(Color.White)
-                        .padding(8.dp)
                         .clip(shape = RoundedCornerShape(12.dp))
                         .border(
                             width = 1.dp,
@@ -141,46 +142,43 @@ fun ListContent(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
-                    with(sharedTransitionScope) {
-                        Image(
-                            painter = painterResource(nature.imageSrc), null,
-                            modifier = Modifier
-                                .sharedBounds(
-                                    rememberSharedContentState(
-                                        key = NatureSharedElementKey(
-                                            id = nature.id,
-                                            type = NatureSharedElementType.Image,
-                                        )
-                                    ),
-                                    animatedVisibilityScope = animatedVisibilityScope,
-                                    clipInOverlayDuringTransition = OverlayClip(
-                                        RoundedCornerShape(
-                                            topStart = 12.dp,
-                                            topEnd = 12.dp,
-                                        )
-                                    ),
-                                )
-                        )
-                    }
-                    with(sharedTransitionScope) {
-                        Text(
-                            nature.title,
-                            modifier = Modifier
-                                .sharedBounds(
-                                    rememberSharedContentState(
-                                        key = NatureSharedElementKey(
-                                            id = nature.id,
-                                            type = NatureSharedElementType.Title,
-                                        )
-                                    ),
-                                    animatedVisibilityScope = animatedVisibilityScope,
-                                    enter = fadeIn(),
-                                    exit = fadeOut(),
-                                    resizeMode = SharedTransitionScope.ResizeMode.ScaleToBounds(),
-                                )
-                                .padding(bottom = 4.dp)
-                        )
-                    }
+                    Image(
+                        painter = painterResource(nature.imageSrc), null,
+                        modifier = Modifier
+                            .sharedBounds(
+                                rememberSharedContentState(
+                                    key = NatureSharedElementKey(
+                                        id = nature.id,
+                                        type = NatureSharedElementType.Image,
+                                    )
+                                ),
+                                animatedVisibilityScope = animatedVisibilityScope,
+                                clipInOverlayDuringTransition = OverlayClip(
+                                    RoundedCornerShape(
+                                        topStart = 12.dp,
+                                        topEnd = 12.dp,
+                                    )
+                                ),
+                                resizeMode = SharedTransitionScope.ResizeMode.RemeasureToBounds,
+                            )
+                    )
+                    Text(
+                        nature.title,
+                        modifier = Modifier
+                            .padding(bottom = 4.dp)
+                            .sharedBounds(
+                                rememberSharedContentState(
+                                    key = NatureSharedElementKey(
+                                        id = nature.id,
+                                        type = NatureSharedElementType.Title,
+                                    )
+                                ),
+                                animatedVisibilityScope = animatedVisibilityScope,
+                                enter = fadeIn(),
+                                exit = fadeOut(),
+                                resizeMode = SharedTransitionScope.ResizeMode.ScaleToBounds(),
+                            )
+                    )
                 }
             }
         }
@@ -197,6 +195,7 @@ fun DetailsContent(
     with(sharedTransitionScope) {
         Column(
             modifier = Modifier
+                .background(Color.LightGray)
                 .sharedBounds(
                     rememberSharedContentState(
                         key = NatureSharedElementKey(
@@ -205,54 +204,53 @@ fun DetailsContent(
                         )
                     ),
                     animatedVisibilityScope = animatedVisibilityScope,
+                    resizeMode = SharedTransitionScope.ResizeMode.RemeasureToBounds,
                 )
-                .fillMaxSize()
-                .background(Color.LightGray),
+                .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            with(sharedTransitionScope) {
-                Image(
-                    painter = painterResource(nature.imageSrc), null,
-                    modifier = Modifier
-                        .sharedBounds(
-                            rememberSharedContentState(
-                                key = NatureSharedElementKey(
-                                    id = nature.id,
-                                    type = NatureSharedElementType.Image,
-                                )
-                            ),
-                            animatedVisibilityScope = animatedVisibilityScope,
-                        )
-                        .fillMaxWidth()
-                        .height(200.dp),
-                    contentScale = ContentScale.Crop,
-                )
-            }
-            with(sharedTransitionScope) {
-                Text(
-                    nature.title,
-                    fontSize = 32.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .sharedBounds(
-                            rememberSharedContentState(
-                                key = NatureSharedElementKey(
-                                    id = nature.id,
-                                    type = NatureSharedElementType.Title,
-                                )
-                            ),
-                            animatedVisibilityScope = animatedVisibilityScope,
-                            enter = fadeIn(),
-                            exit = fadeOut(),
-                            resizeMode = SharedTransitionScope.ResizeMode.ScaleToBounds(),
-                        )
-                        .padding(horizontal = 16.dp),
-                )
-            }
+            Image(
+                painter = painterResource(nature.imageSrc), null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+                    .sharedBounds(
+                        rememberSharedContentState(
+                            key = NatureSharedElementKey(
+                                id = nature.id,
+                                type = NatureSharedElementType.Image,
+                            )
+                        ),
+                        animatedVisibilityScope = animatedVisibilityScope,
+                        resizeMode = SharedTransitionScope.ResizeMode.RemeasureToBounds,
+                    ),
+                contentScale = ContentScale.Crop,
+            )
+            Text(
+                nature.title,
+                fontSize = 32.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .sharedBounds(
+                        rememberSharedContentState(
+                            key = NatureSharedElementKey(
+                                id = nature.id,
+                                type = NatureSharedElementType.Title,
+                            )
+                        ),
+                        animatedVisibilityScope = animatedVisibilityScope,
+                        enter = fadeIn(),
+                        exit = fadeOut(),
+                        resizeMode = SharedTransitionScope.ResizeMode.ScaleToBounds(),
+                    ),
+            )
             Text(
                 nature.description,
-                modifier = Modifier.padding(horizontal = 16.dp),
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .skipToLookaheadSize(),
             )
             Spacer(Modifier.weight(1f))
             IconButton(

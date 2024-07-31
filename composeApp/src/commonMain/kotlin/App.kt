@@ -34,23 +34,24 @@ fun App(
                 modifier = Modifier
                     .fillMaxSize()
                     .background(Color.White),
-            )
-            NavHost(
-                navController = navController,
-                startDestination = "home"
             ) {
-                composable("home") {
-                    HomeScreen(
-                        navController,
-                        platform = getPlatform(),
-                    )
+                NavHost(
+                    navController = navController,
+                    startDestination = "home"
+                ) {
+                    composable("home") {
+                        HomeScreen(
+                            navController,
+                            platform = getPlatform(),
+                        )
+                    }
+                    composable("battery") { BatteryScreen(batteryManager) }
+                    composable("network_call") { NetworkCallSampleScreen(censorService) }
+                    composable("counter") { CounterScreen() }
+                    composable("username") { UsernameScreen() }
+                    composable("pager") { PagerScreen(platform = getPlatform()) }
+                    composable("transition_shared_element") { TransitionSharedElementScreen() }
                 }
-                composable("battery") { BatteryScreen(batteryManager) }
-                composable("network_call") { NetworkCallSampleScreen(censorService) }
-                composable("counter") { CounterScreen() }
-                composable("username") { UsernameScreen() }
-                composable("pager") { PagerScreen(platform = getPlatform()) }
-                composable("transition_shared_element") { TransitionSharedElementScreen() }
             }
         }
     }
