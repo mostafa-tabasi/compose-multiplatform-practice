@@ -61,5 +61,9 @@ fun HomeScreen(
                 onClick = { navController.navigate("transition_shared_element") },
             ) { Text("Transition Shared Element") }
         }
+
+        Button(
+            onClick = { navController.navigate("nested_scroll") },
+        ) { Text("Nested Scroll") }
     }
 }

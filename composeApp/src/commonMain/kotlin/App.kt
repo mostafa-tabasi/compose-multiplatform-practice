@@ -14,6 +14,7 @@ import org.koin.compose.KoinContext
 import screen.BatteryScreen
 import screen.CounterScreen
 import screen.HomeScreen
+import screen.NestedScrollScreen
 import screen.NetworkCallSampleScreen
 import screen.PagerScreen
 import screen.TransitionSharedElementScreen
@@ -51,6 +52,7 @@ fun App(
                     composable("username") { UsernameScreen() }
                     composable("pager") { PagerScreen(platform = getPlatform()) }
                     composable("transition_shared_element") { TransitionSharedElementScreen() }
+                    composable("nested_scroll") { NestedScrollScreen() }
                 }
             }
         }
