@@ -11,7 +11,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,18 +29,24 @@ import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.lerp
 import composemultiplatformpractice.composeapp.generated.resources.Res
 import composemultiplatformpractice.composeapp.generated.resources.nature_1
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun NestedScrollScreen(modifier: Modifier = Modifier) {
+    val fabSize = remember { 50.dp }
     val minImageSize = remember { 75.dp }
     val maxImageSize = remember { 200.dp }
-    val imagePadding = remember { 16.dp }
+    val padding = remember { 16.dp }
     var currentImageSize by remember { mutableStateOf(maxImageSize) }
+    var boxWidth by remember { mutableStateOf(0) }
+    var boxHeight by remember { mutableStateOf(0) }
+    var currentImageSizeDelta by remember { mutableStateOf(1f) }
 
     val nestedScrollConnection = remember {
         object : NestedScrollConnection {
@@ -46,6 +56,9 @@ fun NestedScrollScreen(modifier: Modifier = Modifier) {
                 val newImageSize = currentImageSize + delta.dp
                 val previousImageSize = currentImageSize
                 currentImageSize = newImageSize.coerceIn(minImageSize, maxImageSize)
+
+                currentImageSizeDelta =
+                    (currentImageSize - minImageSize) / (maxImageSize - minImageSize)
 
                 // the amount that we consumed from input scroll
                 // so that this amount won't pass to list composable to scroll
@@ -63,21 +76,31 @@ fun NestedScrollScreen(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxSize()
+            .onSizeChanged {
+                boxWidth = it.width
+                boxHeight = it.height
+            }
             .nestedScroll(nestedScrollConnection),
     ) {
         Image(
             painter = painterResource(Res.drawable.nature_1),
             null,
             modifier = Modifier
-                .padding(imagePadding)
+                .padding(padding)
                 .size(currentImageSize)
+                .offset {
+                    IntOffset(
+                        ((boxWidth / 2) - (currentImageSize / 2).toPx() - padding.toPx()).toInt(),
+                        0
+                    )
+                }
                 .clip(RoundedCornerShape(16.dp)),
             contentScale = ContentScale.Crop,
         )
         LazyColumn(
             modifier = Modifier
                 .offset {
-                    IntOffset(0, (currentImageSize + imagePadding.times(2)).toPx().toInt())
+                    IntOffset(0, (currentImageSize + padding.times(2)).toPx().toInt())
                 }
                 .fillMaxWidth()
                 .background(Color.LightGray)
@@ -89,6 +112,28 @@ fun NestedScrollScreen(modifier: Modifier = Modifier) {
                         .padding(horizontal = 8.dp, vertical = 12.dp)
                 )
             }
+        }
+        FloatingActionButton(
+            modifier = Modifier
+                .padding(padding)
+                .offset {
+                    IntOffset(
+                        // used lerp to interpolate fab offset (x) value,
+                        // based on the start and stop value and the current image size delta
+                        lerp(
+                            start = IntOffset(
+                                ((boxWidth) - fabSize.toPx() - padding.times(2).toPx()).toInt(), 0
+                            ),
+                            stop = IntOffset(boxWidth, 0),
+                            fraction = currentImageSizeDelta,
+                        ).x,
+                        ((boxHeight) - fabSize.toPx() - padding.times(2).toPx()).toInt(),
+                    )
+                },
+            onClick = {},
+            backgroundColor = Color.Gray,
+        ) {
+            Icon(Icons.Default.Add, null)
         }
     }
 }
