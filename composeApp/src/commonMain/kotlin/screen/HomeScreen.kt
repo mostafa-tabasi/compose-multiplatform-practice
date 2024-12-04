@@ -65,5 +65,9 @@ fun HomeScreen(
         Button(
             onClick = { navController.navigate("nested_scroll") },
         ) { Text("Nested Scroll") }
+
+        Button(
+            onClick = { navController.navigate("clip_mask") },
+        ) { Text("Clip and Mask") }
     }
 }
