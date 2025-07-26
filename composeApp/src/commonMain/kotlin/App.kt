@@ -18,6 +18,7 @@ import screen.NestedScrollScreen
 import screen.NetworkCallSampleScreen
 import screen.PagerScreen
 import screen.TransitionSharedElementScreen
+import screen.pagnation.ProductsScreen
 import screen.username.UsernameScreen
 import util.BatteryManager
 
@@ -53,6 +54,7 @@ fun App(
                     composable("pager") { PagerScreen(platform = getPlatform()) }
                     composable("transition_shared_element") { TransitionSharedElementScreen() }
                     composable("nested_scroll") { NestedScrollScreen() }
+                    composable("pagination") { ProductsScreen() }
                 }
             }
         }

@@ -62,6 +62,9 @@ kotlin {
             implementation(libs.bundles.ktor)
             implementation(libs.datastore)
             implementation(libs.datastore.preferences)
+            implementation(libs.androidx.lifecycle.viewmodel.compose)
+            implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.androidx.lifecycle.runtimeCompose)
         }
 
         androidMain.dependencies {
