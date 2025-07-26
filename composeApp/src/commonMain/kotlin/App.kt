@@ -12,6 +12,7 @@ import data.remote.InsultCensorService
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.KoinContext
 import screen.BatteryScreen
+import screen.ClipAndMaskScreen
 import screen.CounterScreen
 import screen.HomeScreen
 import screen.NestedScrollScreen
@@ -54,6 +55,7 @@ fun App(
                     composable("pager") { PagerScreen(platform = getPlatform()) }
                     composable("transition_shared_element") { TransitionSharedElementScreen() }
                     composable("nested_scroll") { NestedScrollScreen() }
+                    composable("clip_mask") { ClipAndMaskScreen() }
                     composable("pagination") { ProductsScreen() }
                 }
             }
