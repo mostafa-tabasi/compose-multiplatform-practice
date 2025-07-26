@@ -163,12 +163,12 @@ private fun parseColor(hex: String): Color {
     // Ensure the hex string starts with '#'
     val hexColor = if (hex.startsWith("#")) hex else "#$hex"
 
-    // Parse the hex string to an integer
-    val colorInt = hexColor.toInt(16)
+    // Strip '#' if present
+    val cleanedHex = hex.removePrefix("#")
 
-    return when (hex.length) {
-        6 -> Color(colorInt or 0xFF000000.toInt()) // Add alpha channel if absent
-        8 -> Color(colorInt) // Full ARGB color
+    return when (cleanedHex.length) {
+        6 -> Color(0xFF000000 or cleanedHex.toLong(16)) // Add alpha if missing
+        8 -> Color(cleanedHex.toLong(16))               // Use as-is if ARGB
         else -> throw IllegalArgumentException("Invalid hex color string: $hex")
     }
 }
